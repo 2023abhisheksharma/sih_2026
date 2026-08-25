@@ -22,8 +22,16 @@ export const CesiumGlobe: React.FC = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Use default Bing or Natural Earth imagery
+    // 1. Configure high-resolution free ESRI World Imagery (No API token required, 100% reliable)
+    const esriProvider = new Cesium.UrlTemplateImageryProvider({
+      url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      maximumLevel: 19,
+      credit: 'Esri, Maxar, Earthstar Geographics',
+    });
+    const baseLayer = new Cesium.ImageryLayer(esriProvider);
+
     const viewer = new Cesium.Viewer(containerRef.current, {
+      baseLayer: baseLayer,
       animation: false,
       baseLayerPicker: false,
       fullscreenButton: false,
@@ -35,14 +43,15 @@ export const CesiumGlobe: React.FC = () => {
       timeline: false,
       navigationHelpButton: false,
       scene3DOnly: true,
-      shadows: true,
+      shadows: false,
     });
 
-    // Darker space atmosphere
-    viewer.scene.globe.enableLighting = true;
-    viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#06090e');
+    // Ensure daytime illumination on Antarctica & realistic polar atmosphere
+    viewer.scene.globe.enableLighting = false;
+    viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#0a192f');
     if (viewer.scene.skyAtmosphere) {
-      viewer.scene.skyAtmosphere.brightnessShift = -0.2;
+      viewer.scene.skyAtmosphere.show = true;
+      viewer.scene.skyAtmosphere.brightnessShift = 0.1;
     }
 
     // Initial Camera position focused on Antarctic Peninsula & Weddell Sea
