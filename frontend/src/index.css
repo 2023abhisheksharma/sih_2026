@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-glacial-950 text-slate-100 font-sans selection:bg-cyan-500/30 selection:text-cyan-200;
+  }
+}
+
+/* Cesium Widget Styling & Clean Theme */
+.cesium-viewer {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.cesium-viewer-bottom {
+  display: none !important;
+}
+
+.cesium-widget-credits {
+  display: none !important;
+}
+
+/* Custom Minimalist Glacial Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(6, 18, 36, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
+}
+
+/* Glassmorphism Styles */
+.ice-glass {
+  background: rgba(11, 29, 56, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(186, 230, 253, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(2, 6, 17, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.ice-glass-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.ice-glass-hover:hover {
+  background: rgba(16, 42, 78, 0.65);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 40px 0 rgba(2, 6, 17, 0.6), 0 0 20px -5px rgba(56, 189, 248, 0.25);
+}
+
+/* Subtle Ice Shimmer Animation */
+@keyframes ice-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: ice-shimmer 3.5s infinite;
+}

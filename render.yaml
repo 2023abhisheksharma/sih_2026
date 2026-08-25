@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: antarctic-navigation-console
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PYTHONPATH
+        value: /app

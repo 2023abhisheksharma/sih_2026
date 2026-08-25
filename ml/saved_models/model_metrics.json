@@ -1,0 +1,15 @@
+{
+  "model_architecture": "Physics-Informed HistGradientBoostingRegressor Residual Estimator",
+  "dataset_samples": 30000,
+  "test_split_samples": 6000,
+  "residual_u_mae_mps": 0.00976,
+  "residual_u_rmse_mps": 0.01228,
+  "residual_v_mae_mps": 0.01007,
+  "residual_v_rmse_mps": 0.01254,
+  "horizon_evaluation_mae_km": {
+    "6h": 0.39,
+    "12h": 0.69,
+    "24h": 1.24
+  },
+  "uncertainty_coverage_pct": 91.4
+}
